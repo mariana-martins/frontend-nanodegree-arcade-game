@@ -3,6 +3,11 @@ var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
+    // Variables X and Y represent the Enemy location.
+    this.x = 0;
+    this.y = 0;
+    // Variable speed represents the Enemy speed.
+    this.speed = 1;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
