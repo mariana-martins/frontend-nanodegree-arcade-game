@@ -59,6 +59,13 @@ Player.prototype.update = function () {
     // It's -10 because I'm subtracting 10 from initial y value.
     if (newY >= -10 && newY <= 415) {
         this.y = newY;
+        // If Player riach the water it will move to initial position afeter a small delay.
+        if (this.y == -10) {
+            setTimeout(function () {
+                this.x = 202;
+                this.y = 405;
+            }.bind(this), 400);
+        }
     }
     this.dy = 0;
 };
