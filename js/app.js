@@ -33,8 +33,8 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function () {
     // Variables X and Y represent the Player location.
-    this.x = 0;
-    this.y = 0;
+    this.x = 202;
+    this.y = 415;
     this.dx = 0;
     this.dy = 0;
     // The image/sprite for our player, this uses
