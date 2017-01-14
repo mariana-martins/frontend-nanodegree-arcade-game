@@ -34,7 +34,7 @@ Enemy.prototype.render = function() {
 var Player = function () {
     // Variables X and Y represent the Player location.
     this.x = 202;
-    this.y = 415;
+    this.y = 405; // I'm subtracting 10 here to property set player on the screen.
     this.dx = 0;
     this.dy = 0;
     // The image/sprite for our player, this uses
@@ -44,9 +44,16 @@ var Player = function () {
 
 Player.prototype.update = function () {
     // You should add any movement by the dx and dy parameters.
-    this.x = this.x + this.dx;
+    var newX = this.x + this.dx;
+    if (newX >= 0 && newX <= 404) {
+        this.x = newX;
+    }
     this.dx = 0;
-    this.y = this.y + this.dy;
+    var newY = this.y + this.dy;
+    // It's -10 because I'm subtracting 10 from initial y value.
+    if (newY >= -10 && newY <= 415) {
+        this.y = newY;
+    }
     this.dy = 0;
 };
 
@@ -55,8 +62,21 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function() {
-
+Player.prototype.handleInput = function(direction) {
+    switch (direction) {
+        case "left":
+            this.dx = this.dx - 101;
+            break;
+        case "up":
+            this.dy = this.dy - 83;
+            break;
+        case "right":
+            this.dx = this.dx + 101;
+            break;
+        case "down":
+            this.dy = this.dy + 83;
+            break;
+    }
 };
 
 
