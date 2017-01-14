@@ -48,6 +48,13 @@ var Player = function () {
     this.sprite = 'images/char-boy.png';
 };
 
+Player.prototype.reset = function(timeout) {
+     setTimeout(function () {
+         this.x = 202;
+         this.y = 405;
+    }.bind(this), timeout);
+};
+
 Player.prototype.update = function () {
     // You should add any movement by the dx and dy parameters.
     var newX = this.x + this.dx;
@@ -61,13 +68,32 @@ Player.prototype.update = function () {
         this.y = newY;
         // If Player riach the water it will move to initial position afeter a small delay.
         if (this.y == -10) {
-            setTimeout(function () {
-                this.x = 202;
-                this.y = 405;
-            }.bind(this), 400);
+            this.reset(400);
         }
     }
     this.dy = 0;
+    // I check if player is colliding to enemies after I update him.
+    this.checkCollision();
+};
+
+Player.prototype.checkCollision = function () {
+
+    allEnemies.forEach(function (enemy) {
+        var width = 101;
+        var height = 83;
+        // I got the collision calculation at: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+        // I'm using Axis-Aligned Bounding Box technique.
+        var collide = enemy.x < this.x + width &&
+            enemy.x + width > this.x &&
+            enemy.y < this.y + height &&
+            height + enemy.y > this.y;
+
+        if (collide) {
+            // collision detected!
+           this.reset(100);
+       }
+    }.bind(this));
+
 };
 
 // Draw the player on the screen, required method for game
