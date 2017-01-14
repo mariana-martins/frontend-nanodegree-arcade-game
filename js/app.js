@@ -4,10 +4,12 @@ var Enemy = function() {
     // we've provided one for you to get started
 
     // Variables X and Y represent the Enemy location.
-    this.x = 0;
-    this.y = 0;
+    this.x = Math.random() * 505;
+    // this.y = (number between 1 and 3) * row height - image position fix (to look better on screen).
+    this.y = (Math.round(Math.random() * 2) + 1) * 83 - 20;
     // Variable speed represents the Enemy speed.
-    this.speed = 100;
+    // It will move at most 2 columns per second.
+    this.speed = Math.round(Math.random() * 2 + 1) * 101;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -90,7 +92,9 @@ Player.prototype.handleInput = function(direction) {
 
 var player = new Player();
 var allEnemies = [];
-allEnemies.push(new Enemy());
+for (var i=0; i < 5; i++) {
+    allEnemies.push(new Enemy());
+}
 
 
 // This listens for key presses and sends the keys to your
