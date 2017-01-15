@@ -9,7 +9,7 @@ var Enemy = function() {
     this.y = (Math.round(Math.random() * 2) + 1) * 83 - 20;
     // Variable speed represents the Enemy speed.
     // It will move at most 2 columns per second.
-    this.speed = Math.round(Math.random() * 2 + 1) * 101;
+    this.speed = Math.round(Math.random() * 2 + 1) * 50;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
